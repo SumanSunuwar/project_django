@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block head %}
+{{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="card shadow">
+	<div>
+        <h2>Authors List</h2>
+		<a class="float-right" href="{% url 'home:add_author' %}">Add New Author</a>
+	</div>
+	<div class="card-body">
+		<div class="row">
+			{% for obj in authors %}
+			<div class="col-sm-12 col-md-6 col-lg-6">
+				<div class="card shadow mt-2 mb-2">
+					<div class="card-header">
+					<p><strong>Name: </strong> {{ obj.name }}</p>
+					</div>
+					<div class="card-body">
+        			<p><strong>Contact: </strong> {{ obj.contact }}</p>
+        			<p><strong>Address: </strong> {{ obj.address }}</p>
+        			<a href="{% url 'home:edit_author' obj.id %}" >Edit</a>
+        			<a href="{% url 'home:delete_author' obj.id%}">Delete</a>
+					
+					</div>
+					
+				</div>
+				
+			</div>
+        	{% endfor %}
+		</div>
+				
+	</div>
+        
+</div>      
+
+{% endblock %}
